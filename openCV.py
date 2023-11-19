@@ -31,3 +31,5 @@ while True:
 # 사용한 자원 해제
 cap.release()
 cv2.destroyAllWindows()
+
+#주석 처리를 추가해보는 ozno
