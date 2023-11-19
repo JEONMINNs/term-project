@@ -6,7 +6,7 @@ cap = cv2.VideoCapture(0)
 
 # 감지할 색상 범위 정의 (HSV 형식)
 lower_color = np.array([0, 0, 0])
-upper_color = np.array([255, 255, 255])
+upper_color = np.array([150, 150, 150])
 
 while True:
     # 프레임 읽기
