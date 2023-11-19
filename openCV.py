@@ -5,7 +5,11 @@ import numpy as np
 cap = cv2.VideoCapture(0)
 
 # 감지할 색상 범위 정의 (HSV 형식)
-lower_color = np.array([0, 1, 0])
+<<<<<<< HEAD
+lower_color = np.array([1, 1, 0])
+=======
+lower_color = np.array([1, 0, 0])
+>>>>>>> a3d6b0eb2b8f4927b0de66e9b54ca589cb139fb9
 upper_color = np.array([255, 255, 255])
 
 while True:
@@ -31,3 +35,5 @@ while True:
 # 사용한 자원 해제
 cap.release()
 cv2.destroyAllWindows()
+
+#주석 처리를 추가해보는 ozno
