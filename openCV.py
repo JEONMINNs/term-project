@@ -52,3 +52,9 @@ while True:
                 # Apply mosaic
                 mosaic = cv2.resize(mosaic_region, mosaic_size, interpolation=cv2.INTER_NEAREST)
                 frame[y_top:y + h, x:x + w] = cv2.resize(mosaic, mosaic_region.shape[:2][::-1], interpolation=cv2.INTER_NEAREST)
+            # Display the frame with mosaic effect
+	    cv2.imshow("Mosaic Face", frame)
+    	   
+	    # Press 'q' key to exit the loop
+	    if cv2.waitKey(1) & 0XFF == ord('q'):
+		break
