@@ -43,3 +43,24 @@ In particular, in the case of outdoor filming, there are many cases where ordina
 ### Let's protect citizens' right to portrait through PUBLIC MASK!
 
 ---
+## How to implement it
+---
+#### 1. Install a library
+ You must install the cv2 and dlib libraries used by the code. You can install it using the commands below.
+> pip install opencv-python
+> pip install dlib
+#### 2. Download **shape_predictor_68_face_landmarks.dat**
+ You can download it http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+ After downloading, unzip it, place it in the same directory as the script, or specify the file path directly to the script.  
+
+#### 3. Check webcam
+ The code uses the default camera (cv2.VideoCapture(0)). Make sure the webcam is working properly.
+#### 4. Run code
+Run code using idle. Running opens the opencv window and presses 'q' to end.
+
+---
+## Version Requirements(with versions we tested on)
+---
+ 1. python(3,11)
+ 2. opencv(4.8.1)
+ 3. numpy(1.26.2)
