@@ -32,3 +32,14 @@ In particular, in the case of outdoor filming, there are many cases where ordina
 ### Let's protect citizens' right to portrait through PUBLIC MASK!
 
 ---
+
+![example](https://github.com/leeeul033/git-practice/assets/144300261/3932005a-32e5-4bcb-ab52-5c3f22dc4e14)
+
+*Photographic sources : MOTIONLAB , (https://www.motionlab.co.kr/TUTORIAL/?q=YToyOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjtzOjQ6InBhZ2UiO2k6Mjt9&bmode=view&idx=12718622&t=board&category=0eC5Bl8r3K)*
+
+
+
+
+### Let's protect citizens' right to portrait through PUBLIC MASK!
+
+---
