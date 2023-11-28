@@ -2,51 +2,21 @@ import cv2
 import dlib
 import numpy as np
 
-#DlibÀÇ ¾ó±¼ ¹× ´« °¨Áö±â ÃÊ±âÈ­
+# DlibÀÇ ¾ó±¼ ¹× ´« °¨Áö±â ÃÊ±âÈ­
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
-<<<<<<< HEAD
-# ê°ì§€í•  ìƒ‰ìƒ ë²”ìœ„ ì •ì˜ (HSV í˜•ì‹)
-<<<<<<< HEAD
-lower_color = np.array([1, 1, 0])
-=======
-lower_color = np.array([1, 0, 0])
->>>>>>> a3d6b0eb2b8f4927b0de66e9b54ca589cb139fb9
-upper_color = np.array([255, 255, 255])
+# Ä«¸Ş¶ó ¿­±â
+cap = cv2.VideoCapture(0)  # 0Àº ±âº» Ä«¸Ş¶ó¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
 
 while True:
-    # í”„ë ˆì„ ì½ê¸°
-    ret, frame = cap.read()
+    # ÇÁ·¹ÀÓ ÀĞ±â
     ret, frame = cap.read()
     if not ret:
         break
-    # ê·¸ë ˆì´ ìŠ¤ì¼€ì¼ ë³€í™˜
+
+    # ±×·¹ÀÌ ½ºÄÉÀÏ º¯È¯
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    #ì–¼êµ´ ê°ì§€
+
+    # ¾ó±¼ °¨Áö
     faces = detector(gray)
-    # BGRì„ HSVë¡œ ë³€í™˜
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-
-    # ì§€ì •í•œ ìƒ‰ìƒ ë²”ìœ„ì— í•´ë‹¹í•˜ëŠ” ë¶€ë¶„ì„ ì°¾ê¸°
-    mask = cv2.inRange(hsv, lower_color, upper_color)
-
-    # ì›ë³¸ ì´ë¯¸ì§€ì—ì„œ ìƒ‰ìƒì— í•´ë‹¹í•˜ëŠ” ë¶€ë¶„ë§Œ ì¶”ì¶œ
-    result = cv2.bitwise_and(frame, frame, mask=mask)
-
-    # ê²°ê³¼ ì´ë¯¸ì§€ ì¶œë ¥
-    cv2.imshow('Color Detection', result)
-
-    # 'q' í‚¤ë¥¼ ëˆ„ë¥´ë©´ ì¢…ë£Œ
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-
-# ì‚¬ìš©í•œ ìì› í•´ì œ
-cap.release()
-cv2.destroyAllWindows()
-
-#ì£¼ì„ ì²˜ë¦¬ë¥¼ ì¶”ê°€í•´ë³´ëŠ” ozno
-=======
-#±âº» Ä«¸Ş¶ó ¿­±â
-cap = cv2.VideoCapture(0) 
->>>>>>> ba693a7dfb18d1754596999beefb607c444fc8a3
