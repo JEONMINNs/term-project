@@ -3,48 +3,52 @@ import cv2
 import dlib
 import numpy as np
 
-# DlibÀÇ ¾ó±¼ ¹× ´« °¨Áö±â ÃÊ±âÈ­
+# Initialize Dlib's face and eye detectors
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
-# Ä«¸Ş¶ó ¿­±â
-cap = cv2.VideoCapture(0)  # 0Àº ±âº» Ä«¸Ş¶ó¸¦ ÀÇ¹ÌÇÕ´Ï´Ù.
+# Open the camera
+cap = cv2.VideoCapture(0)  # 0 indicates the default camera.
 
 while True:
-    # ÇÁ·¹ÀÓ ÀĞ±â
+    # Read the frame
     ret, frame = cap.read()
     if not ret:
         break
 
-    # ±×·¹ÀÌ ½ºÄÉÀÏ º¯È¯
+    # Convert to grayscale
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    # ¾ó±¼ °¨Áö
-    faces = detector(gray)
-
-# ì–¼êµ´ ê°ì§€
+    # Detect faces
     faces = detector(gray)
 
     for face in faces:
-        # ì–¼êµ´ ì „ì²´ ì¢Œí‘œ
+        # Coordinates of the entire face
         x, y, w, h = face.left(), face.top(), face.width(), face.height()
 
-        # ìœ—ìª½ ì ˆë°˜ ì¢Œí‘œ ê³„ì‚°
+        # Calculate coordinates for the top half of the face
         y_top = max(y, y + h // 3)
 
-        # ëˆˆ ê°ì§€
+        # Detect eyes
         landmarks = predictor(gray, face)
-        for n in range(36, 48):  # 36ë¶€í„° 47ê¹Œì§€ëŠ” ëˆˆ ë¶€ë¶„
+        for n in range(36, 48):  # Eyes are represented by landmarks from 36 to 47
             x_eye = landmarks.part(n).x
             y_eye = landmarks.part(n).y
 
-            # ëˆˆ ì£¼ë³€ ì¢Œí‘œ ê³„ì‚°
+            # Calculate coordinates around the eyes
             x1 = max(0, x_eye - 5)
             y1 = max(0, y_eye - 5)
             x2 = min(frame.shape[1], x_eye + 5)
             y2 = min(frame.shape[0], y_eye + 5)
 
-            # ì–¼êµ´ì—ì„œ ëˆˆì„ ì œì™¸í•œ ì£¼ë³€ ë¶€ë¶„ ëª¨ìì´í¬ ì²˜ë¦¬
+            # Mosaic the surrounding area excluding the eyes from the face
             if y1 < y2 and x1 < x2:
-                # ëª¨ìì´í¬ ì²˜ë¦¬í•  ë¶€ë¶„
+                # Region to be mosaic
                 mosaic_region = frame[y_top:y + h, x:x + w]
+
+                # Mosaic size specification
+                mosaic_size = (10, 10)
+
+                # Apply mosaic
+                mosaic = cv2.resize(mosaic_region, mosaic_size, interpolation=cv2.INTER_NEAREST)
+                frame[y_top:y + h, x:x + w] = cv2.resize(mosaic, mosaic_region.shape[:2][::-1], interpolation=cv2.INTER_NEAREST)
